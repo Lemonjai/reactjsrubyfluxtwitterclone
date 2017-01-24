@@ -22,6 +22,8 @@ gem 'react-rails'
 gem 'materialize-sass'
 # Users authenication
 gem 'devise'
+# Moment JS
+gem 'momentjs-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
