@@ -6,6 +6,10 @@ import TweetActions from "./actions/TweetActions";
 
 TweetActions.getAllTweets();
 
+let getAppState = () => {
+  return { tweetsList: TweetStore.getAll() };
+}
+
 let mockTweets = [
   {id: 1, name: 'Leo Cheung', body: 'My #FirstTweet'},
   {id: 2, name: 'Leo Cheung', body: 'My #SecondTweet'},
@@ -15,19 +19,9 @@ let mockTweets = [
 class Main extends React.Component{
   constructor(props) {
     super(props);
-    this.state = { tweetsList: [] };
+    this.state = getAppState();
+    this._onChange = this._onChange.bind(this);
   }
-
-  // formattedTweets(tweetsList){
-  //   let formattedList = tweetsList.map(tweet => {
-  //     tweet.formattedDate = moment(tweet.created_at).fromNow();
-  //     return tweet;
-  //   }); 
-
-  //   return{
-  //     tweetsList: tweetsList
-  //   }; 
-  // }
 
   addTweet(tweetToAdd){
 
@@ -41,9 +35,16 @@ class Main extends React.Component{
   }
 
   componentDidMount() {
-    // $.ajax("/tweets")
-    // .success(data => this.setState(this.formattedTweets(data)))
-    // .error(error => console.log(error));
+    TweetStore.addChangeListener(this._onChange)
+  }
+
+  componentWillUnmount() {
+    TweetStore.removeChangeListener(this._onChange)
+  }
+
+  _onChange(){
+    console.log(5,"Main._onChange")
+    this.setState(getAppState());
   }
 
   render() {
