@@ -1,6 +1,10 @@
 // import Greet from './greet';
 import TweetBox from './component/TweetBox';
 import TweetList from './component/TweetList';
+import TweetStore from "./stores/TweetStore";
+import TweetActions from "./actions/TweetActions";
+
+TweetActions.getAllTweets();
 
 let mockTweets = [
   {id: 1, name: 'Leo Cheung', body: 'My #FirstTweet'},
@@ -14,32 +18,32 @@ class Main extends React.Component{
     this.state = { tweetsList: [] };
   }
 
-  formattedTweets(tweetsList){
-    let formattedList = tweetsList.map(tweet => {
-      tweet.formattedDate = moment(tweet.created_at).fromNow();
-      return tweet;
-    }); 
+  // formattedTweets(tweetsList){
+  //   let formattedList = tweetsList.map(tweet => {
+  //     tweet.formattedDate = moment(tweet.created_at).fromNow();
+  //     return tweet;
+  //   }); 
 
-    return{
-      tweetsList: tweetsList
-    }; 
-  }
+  //   return{
+  //     tweetsList: tweetsList
+  //   }; 
+  // }
 
   addTweet(tweetToAdd){
 
-    $.post("/tweets", {body: tweetToAdd})
-    .success( savedTweet => {
-      let newTweetsList = this.state.tweetsList;
-      newTweetsList.unshift(savedTweet);
-      this.setState(this.formattedTweets(newTweetsList));
-    })
-    .error(error => console.log(error));    
+    // $.post("/tweets", {body: tweetToAdd})
+    // .success( savedTweet => {
+    //   let newTweetsList = this.state.tweetsList;
+    //   newTweetsList.unshift(savedTweet);
+    //   this.setState(this.formattedTweets(newTweetsList));
+    // })
+    // .error(error => console.log(error));    
   }
 
   componentDidMount() {
-    $.ajax("/tweets")
-    .success(data => this.setState(this.formattedTweets(data)))
-    .error(error => console.log(error));
+    // $.ajax("/tweets")
+    // .success(data => this.setState(this.formattedTweets(data)))
+    // .error(error => console.log(error));
   }
 
   render() {

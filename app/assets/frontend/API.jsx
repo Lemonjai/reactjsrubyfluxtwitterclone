@@ -1,9 +1,10 @@
-import ServerAction from "./actions/ServerActions"
+import ServerActions from "./actions/ServerActions"
 
 export default{
   getAllTweets(){
+    console.log(2,"API.getAllTweets");
     $.get("/tweets")
     .success( rawTweets => ServerActions.receivedTweets(rawTweets))
-    .error(error => consooe.log(error));
+    .error(error => console.log(error));
   }
 }
