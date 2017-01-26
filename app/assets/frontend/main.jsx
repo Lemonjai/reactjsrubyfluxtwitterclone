@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Index from './component/Index';
+import Follow from './component/Follow';
 
-import { browserHistory, Router, Route, Link } from 'react-router';
+import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router';
 
 class App extends React.Component{
   render() {
@@ -19,8 +20,9 @@ let documentReady = () => {
   if(reactNode){
     ReactDOM.render( 
       <Router history={browserHistory}>
-        <Route component={App}>
-          <Route path="/" component={Index} />
+        <Route path="/" component={App}>
+          <IndexRoute component={Index} />
+          <Route path="follow" component={Follow} />
         </Route>
       </Router>
       ,reactNode);
