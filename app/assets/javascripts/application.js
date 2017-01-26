@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require react
-//= require react_ujs
 //= require materialize
 //= require moment
 //= require components
