@@ -1,11 +1,10 @@
 import AppDispatcher from "../dispatcher";
 import ActionTypes from "../constants";
-import { EventEmitter } from "events";
+import AppEventEmitter from "./AppEventEmitter";
 
 let _tweets = [];
-const CHANGE_EVENT = "CHANGE";
 
-class TweetEventEmitter extends EventEmitter{
+class TweetEventEmitter extends AppEventEmitter{
 
   getAll(){
     return _tweets.map(tweet => {
@@ -13,17 +12,7 @@ class TweetEventEmitter extends EventEmitter{
       return tweet 
     });
   }
-  emitChange(){
-    this.emit(CHANGE_EVENT);
-  }
-  addChangeListener(callback){
-    this.on(CHANGE_EVENT, callback);
-  }
-
-  removeChangeListener(callback){
-    this.removeChangeListener(CHANGE_EVENT, callback);
-  }
-}
+ }
 
 let TweetStore = new TweetEventEmitter();
 
